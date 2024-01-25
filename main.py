@@ -30,33 +30,30 @@
 # 24
 
 class EvenNumbers:
-    def __init__(self, start, end):
+    def __init__(self, start=0, end=1):
         self.start = start
         self.end = end
-        self.i = 0
-
-        # start < end
-
-        # if start == ' ':
-        #     start = 0
-        # if end == ' ':
-        #     end = 1
+        self.i = start - 1
+        # return start < end
 
     def __iter__(self):
         # обнуляем счетчик перед циклом
-        self.i = 0
+        self.i = self.start - 1
         # возвращаем ссылку на себя - я буду итератором!
         return self
 
     def __next__(self):
-        # self.i = i
-        # а этот метод возвращает значения по требованию python
-        self.i += 1
-        if self.i // 2:
+        if self.i < self.end:
+            self.i += 1
             return self.i
-        raise StopIteration()
+        else:
+            raise StopIteration
+
+        # а этот метод возвращает значения по требованию python
+
 
 
 en = EvenNumbers(10, 25)
 for i in en:
-    print(i)
+    if i % 2 == 0:
+        print(i)
